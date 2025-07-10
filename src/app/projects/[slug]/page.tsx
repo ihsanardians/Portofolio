@@ -30,7 +30,7 @@ function getProjectData(slug: string): ProjectType | undefined {
   return projectsData[slug];
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   const slugs = Object.keys(projectsData);
 
   return slugs.map((slug) => ({
