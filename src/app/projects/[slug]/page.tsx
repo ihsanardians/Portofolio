@@ -30,6 +30,14 @@ function getProjectData(slug: string): ProjectType | undefined {
   return projectsData[slug];
 }
 
+export async function generateStaticParams() {
+  const slugs = Object.keys(projectsData);
+
+  return slugs.map((slug) => ({
+    slug: slug,
+  }));
+}
+
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = getProjectData(params.slug);
 
