@@ -6,6 +6,7 @@ import Image from "next/image";
 import { projectsData, ProjectType } from "@/lib/projects";
 import TableauTabs from "@/app/components/TableauTabs";
 import PageWrapper from "@/app/components/PageWrapper";
+import type { Metadata } from "next";
 
 // Data spesifik untuk tab Tableau
 const dashboardTabs = [
@@ -26,19 +27,39 @@ const dashboardTabs = [
   },
 ];
 
+// Mendefinisikan tipe untuk props halaman
+type Props = {
+  params: { slug: string };
+};
+
+// Fungsi untuk membuat judul tab browser menjadi dinamis
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+  const project = getProjectData(slug);
+
+  if (!project) {
+    return { title: "Proyek Tidak Ditemukan" };
+  }
+
+  return {
+    title: `${project.title} | Portofolio Ihsan`,
+    description: project.description,
+  };
+}
+
+// Fungsi untuk mendapatkan data proyek
 function getProjectData(slug: string): ProjectType | undefined {
   return projectsData[slug];
 }
 
+// Fungsi untuk menghasilkan halaman statis saat build
 export function generateStaticParams() {
   const slugs = Object.keys(projectsData);
-
-  return slugs.map((slug) => ({
-    slug: slug,
-  }));
+  return slugs.map((slug) => ({ slug: slug }));
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
+// Komponen Halaman Utama
+export default function ProjectPage({ params }: Props) {
   const project = getProjectData(params.slug);
 
   if (!project) {
@@ -78,8 +99,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             <Image
               src={project.imageUrl}
               alt={`Tampilan Proyek ${project.title}`}
-              width={1200} // Ganti dengan lebar asli gambar Anda
-              height={400} // Ganti dengan tinggi asli gambar Anda
+              width={1200}
+              height={400}
               className="w-full h-auto rounded-lg shadow-lg"
             />
           </div>
@@ -90,7 +111,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           {project.description}
         </p>
 
-        {/* ===== BAGIAN BARU KHUSUS UNTUK PROYEK KLASIFIKASI GENDER ===== */}
+        {/* BAGIAN BARU KHUSUS UNTUK PROYEK KLASIFIKASI GENDER */}
         {params.slug === "klasifikasi-gender" && (
           <>
             <h3 className="text-xl font-semibold mb-3">Arsitektur Model CNN</h3>
@@ -111,6 +132,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </ul>
 
             <h3 className="text-xl font-semibold mb-4">Hasil & Evaluasi</h3>
+            {/* ===== BAGIAN INI DIPERBAIKI DENGAN GRID ===== */}
             <div className="w-full h-auto rounded-lg shadow-lg">
               <div className="text-center">
                 <p className="text-gray-400 mb-2">Grafik Performa Training</p>
@@ -148,7 +170,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           ))}
         </div>
 
-        {/* Tombol Aksi dengan Logika Kondisional */}
+        {/* Tombol Aksi */}
         <div className="flex space-x-4">
           <a
             href={project.githubUrl}
