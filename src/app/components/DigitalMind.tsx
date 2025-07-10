@@ -10,20 +10,25 @@ const projects = [
     id: 1,
     name: "Website Kabita Food",
     skill: "Web Development",
-    slug: "kabita-food",
+    path: "/projects/kabita-food",
   },
-  { id: 2, name: "Portal Berita", skill: "Dynamic Web", slug: "portal-berita" },
+  {
+    id: 2,
+    name: "Portal Berita",
+    skill: "Dynamic Web",
+    path: "/projects/portal-berita",
+  },
   {
     id: 3,
     name: "Dashboard Influencer",
     skill: "Data Visualization",
-    slug: "dashboard-influencer",
+    path: "/projects/dashboard-influencer",
   },
   {
     id: 4,
-    name: "Klasifikasi Gender CNN",
+    name: "Klasifikasi Gender",
     skill: "Deep Learning",
-    slug: "klasifikasi-gender",
+    path: "/projects/klasifikasi-gender",
   },
 ];
 
@@ -62,7 +67,7 @@ const DigitalMind = () => {
               delay: 0.5 + index * 0.2,
             }}
           >
-            <Link href={`/projects/${project.slug}`}>
+            <Link href={project.path}>
               <div className="w-32 h-32 md:w-36 md:h-36 bg-gray-800/50 border border-gray-600 rounded-full flex flex-col justify-center items-center text-center p-2 cursor-pointer hover:border-cyan-400 hover:scale-110 transition-all duration-300">
                 <p className="text-sm font-semibold text-white">
                   {project.name}
