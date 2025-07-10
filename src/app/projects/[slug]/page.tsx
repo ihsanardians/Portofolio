@@ -27,15 +27,15 @@ const dashboardTabs = [
   },
 ];
 
-// Mendefinisikan tipe untuk props halaman
+// Mendefinisikan tipe untuk props halaman (FIXED)
 type Props = {
   params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
 };
 
-// Fungsi untuk membuat judul tab browser menjadi dinamis
+// Fungsi untuk membuat judul tab browser menjadi dinamis (FIXED)
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params.slug;
-  const project = getProjectData(slug);
+  const project = getProjectData(params.slug);
 
   if (!project) {
     return { title: "Proyek Tidak Ditemukan" };
@@ -55,7 +55,9 @@ function getProjectData(slug: string): ProjectType | undefined {
 // Fungsi untuk menghasilkan halaman statis saat build
 export function generateStaticParams() {
   const slugs = Object.keys(projectsData);
-  return slugs.map((slug) => ({ slug: slug }));
+  return slugs.map((slug) => ({
+    slug: slug,
+  }));
 }
 
 // Komponen Halaman Utama
@@ -132,26 +134,25 @@ export default function ProjectPage({ params }: Props) {
             </ul>
 
             <h3 className="text-xl font-semibold mb-4">Hasil & Evaluasi</h3>
-            {/* ===== BAGIAN INI DIPERBAIKI DENGAN GRID ===== */}
-            <div className="w-full h-auto rounded-lg shadow-lg">
-              <div className="text-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div className="text-center bg-gray-800/50 p-4 rounded-lg">
                 <p className="text-gray-400 mb-2">Grafik Performa Training</p>
                 <Image
                   src="/images/grafik-model.png"
                   alt="Grafik Training dan Validasi"
                   width={500}
                   height={400}
-                  className="rounded-lg shadow-lg mx-auto"
+                  className="w-full h-auto"
                 />
               </div>
-              <div className="text-center">
-                <p className="text-gray-400 mb-2 mt-4">Confusion Matrix</p>
+              <div className="text-center bg-gray-800/50 p-4 rounded-lg">
+                <p className="text-gray-400 mb-2">Confusion Matrix</p>
                 <Image
                   src="/images/confusion-matrix.png"
                   alt="Confusion Matrix"
                   width={400}
                   height={400}
-                  className="rounded-lg shadow-lg mx-auto"
+                  className="w-full h-auto"
                 />
               </div>
             </div>
@@ -180,7 +181,6 @@ export default function ProjectPage({ params }: Props) {
           >
             Lihat Kode
           </a>
-          {/* Tombol Live Demo hanya muncul jika linknya bukan '#' */}
           {project.liveDemoUrl !== "#" && (
             <a
               href={project.liveDemoUrl}
