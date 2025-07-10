@@ -93,7 +93,7 @@ export default function ContactPage() {
             <ContactInfo
               icon={FaGithub}
               title="GitHub"
-              value="github.com/ihsanmsy"
+              value="github.com/ihsanardians"
               href="https://github.com/ihsanardians"
             />
           </div>
