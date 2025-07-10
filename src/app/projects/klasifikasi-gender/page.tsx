@@ -51,7 +51,7 @@ export default function KlasifikasiGenderPage() {
           <div className="text-center bg-gray-800/50 p-4 rounded-lg">
             <p className="text-gray-400 mb-2">Grafik Performa Training</p>
             <Image
-              src="/images/grafik-training.png"
+              src="/images/grafik-model.png"
               alt="Grafik Training dan Validasi"
               width={500}
               height={400}

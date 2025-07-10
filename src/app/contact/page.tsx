@@ -94,7 +94,7 @@ export default function ContactPage() {
               icon={FaGithub}
               title="GitHub"
               value="github.com/ihsanmsy"
-              href="https://github.com/ihsanmsy"
+              href="https://github.com/ihsanardians"
             />
           </div>
 
