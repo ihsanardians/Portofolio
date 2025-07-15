@@ -19,7 +19,10 @@ const TableauTabs: React.FC<TableauTabsProps> = ({ tabs }) => {
     <div className="w-full">
       {/* Tombol Tab */}
       <div className="mb-4 border-b border-gray-700">
-        <nav className="-mb-px flex space-x-8" aria-label="Tabs">
+        <nav
+          className="-mb-px flex space-x-8 overflow-x-auto"
+          aria-label="Tabs"
+        >
           {tabs.map((tab, index) => (
             <button
               key={tab.name}
@@ -36,22 +39,30 @@ const TableauTabs: React.FC<TableauTabsProps> = ({ tabs }) => {
         </nav>
       </div>
 
-      {/* ===== INI BAGIAN YANG DIPERBARUI ===== */}
       {/* Konten Tab (Dashboard) */}
-      <div className="w-full h-[85vh] bg-gray-800 rounded-lg overflow-hidden shadow-lg border border-gray-700">
+      {/* ===== KODE INI SEKARANG MENGGABUNGKAN DUA TAMPILAN ===== */}
+      <div
+        className="w-full bg-gray-800 rounded-lg overflow-hidden shadow-lg border border-gray-700 
+                   h-[600px] md:h-[85vh] overflow-x-auto md:overflow-hidden"
+      >
         {tabs.map((tab, index) => (
           <div
             key={tab.name}
-            className={activeTab === index ? "h-full w-full" : "hidden"}
+            className={`${
+              activeTab === index ? "block" : "hidden"
+            } w-full h-full`}
           >
-            <iframe
-              src={tab.embedUrl}
-              width="100%"
-              height="100%"
-              style={{ border: "none" }}
-              title={tab.name}
-              loading="lazy"
-            ></iframe>
+            {/* Div ini memastikan dashboard punya ruang di mobile */}
+            <div className="w-[800px] md:w-full h-full">
+              <iframe
+                src={tab.embedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: "none" }}
+                title={tab.name}
+                loading="lazy"
+              ></iframe>
+            </div>
           </div>
         ))}
       </div>

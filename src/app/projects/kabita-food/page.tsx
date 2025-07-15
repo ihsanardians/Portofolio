@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { projectsData } from "@/lib/projects";
 import PageWrapper from "@/app/components/PageWrapper";
+import { FaArrowLeft } from "react-icons/fa";
 
 // Langsung ambil data untuk proyek spesifik ini
 const project = projectsData["kabita-food"];
@@ -17,6 +18,14 @@ export default function KabitaFoodPage() {
   return (
     <PageWrapper>
       <div className="container mx-auto max-w-4xl px-4 md:px-8 pt-28 pb-16">
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors mb-8"
+        >
+          <FaArrowLeft />
+          Kembali ke Semua Proyek
+        </Link>
+
         <h1 className="text-4xl md:text-5xl font-bold text-cyan-400 mb-2">
           {project.title}
         </h1>

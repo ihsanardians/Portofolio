@@ -32,7 +32,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-center px-4">
+    <div className="flex flex-col items-center justify-center min-h-[800px] text-center px-4">
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -43,8 +43,11 @@ export default function HomePage() {
           variants={itemVariants}
           className="text-4xl md:text-5xl font-light text-gray-300"
         >
-          Hi, saya{" "}
-          <span className="font-bold text-white">Ihsan Ardiansyah</span>
+          Hi, saya
+          <span className="font-bold text-white block md:inline">
+            {" "}
+            Ihsan Ardiansyah
+          </span>
         </motion.h1>
 
         <motion.p

@@ -18,7 +18,7 @@ const Navbar = () => {
 
   return (
     // ===== PERUBAHAN 1: Tambahkan 'relative' =====
-    <nav className="fixed top-0 left-0 w-full h-[80px] flex justify-between items-center px-4 md:px-8 bg-gray-900/30 backdrop-blur-md text-gray-300 z-50 relative">
+    <nav className="fixed top-0 left-0 w-full h-[80px] flex justify-between items-center px-4 md:px-8 bg-gray-800/50 backdrop-blur-md text-gray-300 z-50">
       {/* Logo / Nama (Sisi Kiri) */}
       <div className="z-10">
         <Link href="/">
@@ -79,7 +79,24 @@ const Navbar = () => {
             : "hidden"
         }
       >
-        {/* ... (isi menu mobile tetap sama) ... */}
+        {/* ===== ISI YANG PERLU DITAMBAHKAN ADA DI SINI ===== */}
+        <li className="hover:text-cyan-400 transition-colors duration-300 px-3 py-6 rounded-md text-2xl">
+          <Link onClick={handleClick} href="/">
+            Home
+          </Link>
+        </li>
+        {navLinks.map(({ id, name, path }) => (
+          <li
+            key={id}
+            className="hover:text-cyan-400 transition-colors duration-300 px-3 py-6 rounded-md text-2xl"
+          >
+            <Link onClick={handleClick} href={path}>
+              {name}
+            </Link>
+          </li>
+        ))}
+
+        {/* ================================================= */}
       </ul>
     </nav>
   );
