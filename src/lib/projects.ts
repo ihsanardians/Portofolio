@@ -25,7 +25,7 @@ export const projectsData: ProjectsDataType = {
       "Proyek ini mencakup seluruh siklus hidup pengembangan sistem (SDLC) untuk UMKM 'Kabita Food'. meliputi tahap analisis kebutuhan untuk memahami proses bisnis, perancangan sistem (desain database dan arsitektur), manajemen proyek untuk memastikan progres berjalan sesuai jadwal, hingga tahap implementasi backend menggunakan Laravel. Saat ini, proyek masih dalam tahap pengembangan aktif dengan fokus pada penyempurnaan fitur backend menggunakan Laravel.",
     techStack: ["PHP", "Laravel", "MySQL", "JavaScript"],
     imageUrl: "/images/kabita-food.png",
-    liveDemoUrl: "#", // Ganti dengan link Anda
+    liveDemoUrl: "https://kabitafood.store", // Ganti dengan link Anda
     githubUrl: "https://github.com/ihsanardians/KabitaFoodOrder", // Ganti dengan link Anda
   },
   "portal-berita": {
